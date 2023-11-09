@@ -4,7 +4,7 @@
 
 - [x] npm install styled-components
 - [x] npm i react-router-dom
-- [x] npm i react-style-reset
+- [x] npm i styled-reset
 - [] npm i react-hook-form <!--form 관련-->
 - [] npm i react-helmet <!--타이틀 관련-->
 

@@ -18,8 +18,8 @@
 
 ## ToDo
 
-- [] router 설정
-- [] 각 components 폴더 생성
+- [x] router 설정
+- [x] 각 components 폴더 생성
 - [] api 설정
 - [] Home component 구성
 - [] Detail component 구성

@@ -23,6 +23,8 @@ export const GlobalStyled = createGlobalStyle`
         letter-spacing: -1px;
         word-break: break-all;
         // => 단어 기준으로 줄바꿈 처리
+        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Noto Sans KR', sans-serif;
     }
 
     a{

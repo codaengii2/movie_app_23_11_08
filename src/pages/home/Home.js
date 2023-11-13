@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { nowPlaying } from "../../api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const MainBanner = styled.div`
   height: 80vh;
@@ -51,24 +51,42 @@ export const Home = () => {
   //   await nowPlaying(); //=> 기다릴 함수
   // })();
 
+  const [nowPlayingData, setNowPlayingData] = useState();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     (async () => {
       try {
-        const data = await nowPlaying();
-        console.log(data);
+        const { results } = await nowPlaying();
+        // console.log(data);
+        // console.log(data.results);
+        // console.log(results[5]?.title);
+        setNowPlayingData(results);
+        setLoading(false);
       } catch (error) {
         console.log("에러: " + error);
       }
     })();
   }, []);
 
+  console.log(loading);
+  console.log(nowPlayingData);
+
   return (
-    <div>
-      <MainBanner>
-        <BlackBg />
-        <h3>타이틀</h3>
-        <p>타이틀 영화 설명</p>
-      </MainBanner>
-    </div>
+    <>
+      {loading ? (
+        "loading..."
+      ) : (
+        <div>
+          {nowPlayingData && (
+            <MainBanner>
+              <BlackBg />
+              <h3>{nowPlayingData[0].title}</h3>
+              <p>타이틀 영화 설명</p>
+            </MainBanner>
+          )}
+        </div>
+      )}
+    </>
   );
 };

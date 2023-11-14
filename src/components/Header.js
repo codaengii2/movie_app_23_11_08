@@ -39,7 +39,7 @@ export const Header = () => {
       </Logo>
       <Menu>
         <li>
-          <Link to={routes.detail}>Home</Link>
+          <Link to={routes.home}>Home</Link>
         </li>
         <li>
           <Link to={routes.search}>Search</Link>

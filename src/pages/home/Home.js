@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import { nowPlaying } from "../../api";
 import { useEffect, useState } from "react";
+import { IMG_URL } from "../../constants";
 
 const MainBanner = styled.div`
   height: 80vh;
   background-color: lightgray;
   position: relative;
   padding: 400px 5%;
+  background: url(${IMG_URL}/original/${(props) => props.$bgUrl}) no-repeat
+    center/cover;
   h3,
   p {
     position: relative;
   }
 
   h3 {
+    max-width: 650px;
+    width: 100%;
     font-size: 80px;
     font-weight: 700;
     margin-bottom: 30px;
@@ -20,10 +25,22 @@ const MainBanner = styled.div`
     line-height: 100px;
   }
   p {
+    max-width: 650px;
+    width: 100%;
     font-size: 18px;
     font-weight: 400;
     line-height: 26px;
     opacity: 0.8;
+  }
+
+  @media screen and (max-width: 450px) {
+    h3 {
+      font-size: 50px;
+      line-height: 65px;
+    }
+    p {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -52,7 +69,7 @@ export const Home = () => {
   // })();
 
   const [nowPlayingData, setNowPlayingData] = useState();
-  const [loading, setLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -62,27 +79,27 @@ export const Home = () => {
         // console.log(data.results);
         // console.log(results[5]?.title);
         setNowPlayingData(results);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.log("에러: " + error);
       }
     })();
   }, []);
 
-  console.log(loading);
+  console.log(isloading);
   console.log(nowPlayingData);
 
   return (
     <>
-      {loading ? (
+      {isloading ? (
         "loading..."
       ) : (
         <div>
           {nowPlayingData && (
-            <MainBanner>
+            <MainBanner $bgUrl={nowPlayingData[0].backdrop_path}>
               <BlackBg />
               <h3>{nowPlayingData[0].title}</h3>
-              <p>타이틀 영화 설명</p>
+              <p>{nowPlayingData[0].overview.slice(0, 100) + "..."}</p>
             </MainBanner>
           )}
         </div>
@@ -90,3 +107,6 @@ export const Home = () => {
     </>
   );
 };
+
+//=> movie api 에서 img 불러오는 경로 url 찾아보기
+// => $bgUrl을 props로 받아와서 사진 지정

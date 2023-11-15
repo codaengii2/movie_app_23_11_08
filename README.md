@@ -7,6 +7,8 @@
 - [x] npm i styled-reset
 - [] npm i react-hook-form <!--form 관련-->
 - [] npm i react-helmet <!--타이틀 관련-->
+- [x] npm install swiper
+- [x] npm i react-spinners
 
 <!-- fontawesome -->
 
@@ -20,7 +22,7 @@
 
 - [x] router 설정
 - [x] 각 components 폴더 생성
-- [] api 설정
+- [x] api 설정
 - [] Home ui 및 전체 구성
 - [] Detail component 구성
 - [] Search component 구성

@@ -1,6 +1,17 @@
 import { nowPlaying } from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanners } from "./MainBanners";
+import styled from "styled-components";
+import "swiper/css";
+import { ShowMovie } from "./ShowMovie";
+import { ClimbingBoxLoader } from "react-spinners";
+
+const Loading = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Home = () => {
   // 1. 마운트시 api에 요청
@@ -40,9 +51,18 @@ export const Home = () => {
   return (
     <>
       {isloading ? (
-        "loading..."
+        <Loading>
+          <ClimbingBoxLoader color="rgba(214, 54, 126, 1)" size={30} />
+        </Loading>
       ) : (
-        <div>{nowPlayingData && <MainBanners data={nowPlayingData[0]} />}</div>
+        <div>
+          {nowPlayingData && (
+            <>
+              <MainBanners data={nowPlayingData[0]} />
+              <ShowMovie movieData={nowPlayingData} />
+            </>
+          )}
+        </div>
       )}
     </>
   );
@@ -50,3 +70,5 @@ export const Home = () => {
 
 //=> movie api 에서 img 불러오는 경로 url 찾아보기
 // => $bgUrl을 props로 받아와서 사진 지정
+
+// => ... spread 연산자 겉에 있는 괄호를 벗겨내서 사용

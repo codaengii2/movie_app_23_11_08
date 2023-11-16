@@ -3,8 +3,8 @@ import { IMG_URL } from "../../constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
-const Layout = styled.div`
-  padding: 150px 5%;
+const Container = styled.div`
+  margin-bottom: 80px;
 `;
 
 const Title = styled.div`
@@ -54,10 +54,10 @@ const params = {
   },
 };
 
-export const ShowMovie = ({ movieData }) => {
+export const ShowMovie = ({ movieData, titleName }) => {
   return (
-    <Layout>
-      <Title>현재 상영 영화</Title>
+    <Container>
+      <Title>{titleName}</Title>
       <Swiper {...params}>
         {movieData.map((data) => (
           <SwiperSlide key={data.id}>
@@ -68,6 +68,6 @@ export const ShowMovie = ({ movieData }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </Layout>
+    </Container>
   );
 };

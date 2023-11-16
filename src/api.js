@@ -1,7 +1,13 @@
 const fetch = require("node-fetch");
 
 const baseUrl = "https://api.themoviedb.org/3/";
-const nowPlayingUrl = baseUrl + "movie/now_playing" + "?language=ko-KR";
+const setUrl = (type) => {
+  return baseUrl + `movie/${type}` + "?language=ko-KR";
+};
+// const nowPlayingUrl = baseUrl + "movie/now_playing" + "?language=ko-KR";
+// const popularUrl = baseUrl + "movie/popular" + "?language=ko-KR";
+// const topRatedUrl = baseUrl + "movie/top_rated" + "?language=ko-KR";
+// const upcomingUrl = baseUrl + "movie/upcoming" + "?language=ko-KR";
 const options = {
   method: "GET",
   headers: {
@@ -12,5 +18,17 @@ const options = {
 };
 
 export const nowPlaying = () => {
-  return fetch(nowPlayingUrl, options).then((res) => res.json());
+  return fetch(setUrl("now_playing"), options).then((res) => res.json());
+};
+
+export const popular = () => {
+  return fetch(setUrl("popular"), options).then((res) => res.json());
+};
+
+export const topRated = () => {
+  return fetch(setUrl("top_rated"), options).then((res) => res.json());
+};
+
+export const upcoming = () => {
+  return fetch(setUrl("upcoming"), options).then((res) => res.json());
 };

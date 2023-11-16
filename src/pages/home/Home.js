@@ -6,6 +6,7 @@ import "swiper/css";
 import { ShowMovie } from "./ShowMovie";
 import { ClimbingBoxLoader } from "react-spinners";
 import { Layout } from "../../components/Layout";
+import { PageTitle } from "../../components/PageTitle";
 
 const Loading = styled.div`
   height: 100vh;
@@ -73,6 +74,8 @@ export const Home = () => {
         <div>
           {nowPlayingData && (
             <>
+              <PageTitle titleName={"Home"} />
+
               <MainBanners data={nowPlayingData[0]} />
               <Layout>
                 <ShowMovie

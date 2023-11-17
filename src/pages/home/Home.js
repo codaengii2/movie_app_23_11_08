@@ -4,16 +4,9 @@ import { MainBanners } from "./MainBanners";
 import styled from "styled-components";
 import "swiper/css";
 import { ShowMovie } from "./ShowMovie";
-import { ClimbingBoxLoader } from "react-spinners";
 import { Layout } from "../../components/Layout";
 import { PageTitle } from "../../components/PageTitle";
-
-const Loading = styled.div`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import { Loading } from "../../components/Loading";
 
 export const Home = () => {
   // 1. 마운트시 api에 요청
@@ -67,9 +60,7 @@ export const Home = () => {
   return (
     <>
       {isloading ? (
-        <Loading>
-          <ClimbingBoxLoader color="rgba(214, 54, 126, 1)" size={30} />
-        </Loading>
+        <Loading />
       ) : (
         <div>
           {nowPlayingData && (

@@ -8,6 +8,7 @@ const nowPlayingUrl = baseUrl + "movie/now_playing" + "?language=ko-KR";
 const popularUrl = baseUrl + "movie/popular" + "?language=ko-KR";
 const topRatedUrl = baseUrl + "movie/top_rated" + "?language=ko-KR";
 const upcomingUrl = baseUrl + "movie/upcoming" + "?language=ko-KR";
+
 const options = {
   method: "GET",
   headers: {
@@ -42,3 +43,10 @@ export const movieDetail = (id) => {
   return fetch(detailUrl, options).then((res) => res.json());
 };
 //{}가 있으면 return 생략 못함
+
+export const search = (searchQuery) => {
+  const searchUrl =
+    baseUrl + "search/movie" + `?&query=${searchQuery}` + "?&language=ko-KR";
+
+  return fetch(searchUrl, options).then((res) => res.json());
+};

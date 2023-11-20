@@ -1,4 +1,11 @@
-import { Upcoming, nowPlaying, popular, topRated, upcoming } from "../../api";
+import {
+  Upcoming,
+  nowPlaying,
+  popular,
+  search,
+  topRated,
+  upcoming,
+} from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanners } from "./MainBanners";
 import styled from "styled-components";
@@ -7,6 +14,7 @@ import { ShowMovie } from "./ShowMovie";
 import { Layout } from "../../components/Layout";
 import { PageTitle } from "../../components/PageTitle";
 import { Loading } from "../../components/Loading";
+import { Search } from "../search/Search";
 
 export const Home = () => {
   // 1. 마운트시 api에 요청
@@ -26,6 +34,7 @@ export const Home = () => {
   const [popData, setPopData] = useState();
   const [topData, setTopData] = useState();
   const [upData, setUpData] = useState();
+
   const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {

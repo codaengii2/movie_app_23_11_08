@@ -7,6 +7,13 @@ import { search } from "../../api";
 import { useParams } from "react-router-dom";
 import { Layout } from "../../components/Layout";
 import { IMG_URL } from "../../constants";
+import { PageTitle } from "../../components/PageTitle";
+import { Loading } from "../../components/Loading";
+const Title = styled.h3`
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 50px;
+`;
 
 const Form = styled.form`
   display: flex;
@@ -36,7 +43,6 @@ const Button = styled.button`
   font-size: 20px;
   cursor: pointer;
 `;
-const Title = styled.h3``;
 const ConWrap = styled.div`
   display: grid;
   //=> grid가 적용될 부모에게 사용 플랙스와 동일
@@ -91,6 +97,7 @@ export const Search = () => {
   // });
   // const { searchQuery } = useParams();
   const [term, setTerm] = useState();
+  const [isloading, setIsLoading] = useState(true);
 
   // useEffect(() => {
   //   (async () => {
@@ -107,6 +114,7 @@ export const Search = () => {
     try {
       const { results } = await search(searchQuery);
       setTerm(results);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -118,12 +126,12 @@ export const Search = () => {
   return (
     <>
       {/* <Form onSubmit={searchData}>
-        <Input type="search" placeholder="영화를 검색해보세요"></Input>
-        <Button>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </Button>
-      </Form> */}
-
+  <Input type="search" placeholder="영화를 검색해보세요"></Input>
+  <Button>
+    <FontAwesomeIcon icon={faMagnifyingGlass} />
+  </Button>
+</Form> */}
+      <PageTitle titleName={"Search"} />
       <Layout>
         <Title>찾으시는 영화가 있으신가요?</Title>
 
@@ -154,4 +162,6 @@ export const Search = () => {
   );
 };
 
-//=> term이 있으면
+//=> term이 있으면?
+
+//=> submit 했을 때 검색결과가 불러와지면 loading이 멈추게

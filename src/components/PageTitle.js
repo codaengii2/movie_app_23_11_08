@@ -4,7 +4,7 @@ export const PageTitle = ({ titleName }) => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Movie |{titleName}</title>
+        <title>Movie | {titleName}</title>
       </Helmet>
     </HelmetProvider>
   );

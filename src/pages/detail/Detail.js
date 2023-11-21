@@ -4,6 +4,7 @@ import { movieDetail } from "../../api";
 import styled from "styled-components";
 import { IMG_URL } from "../../constants";
 import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 const Wrap = styled.div`
   width: 100%;
@@ -98,22 +99,25 @@ export const Detail = () => {
       {isloading ? (
         <Loading />
       ) : (
-        <Wrap>
-          <ImgBox $poster={dataDetail?.poster_path}></ImgBox>
-          <Con>
-            <Title>{dataDetail?.title}</Title>
-            <p>평점 :{Math.round(dataDetail?.vote_average)}</p>
-            <ul>
-              {/* <li>{dataDetail?.genres[0]?.name}</li>
+        <>
+          <PageTitle titleName={"Detail"} />
+          <Wrap>
+            <ImgBox $poster={dataDetail?.poster_path}></ImgBox>
+            <Con>
+              <Title>{dataDetail?.title}</Title>
+              <p>평점 :{Math.round(dataDetail?.vote_average)}</p>
+              <ul>
+                {/* <li>{dataDetail?.genres[0]?.name}</li>
               <li>{dataDetail?.genres[1]?.name}</li>
               <li>{dataDetail?.genres[2]?.name}</li> */}
-              {dataDetail.genres.map((data) => (
-                <li key={data.id}>{data.name}</li>
-              ))}
-            </ul>
-            <Over>{dataDetail?.overview.slice(0, 100) + "..."}</Over>
-          </Con>
-        </Wrap>
+                {dataDetail.genres.map((data) => (
+                  <li key={data.id}>{data.name}</li>
+                ))}
+              </ul>
+              <Over>{dataDetail?.overview.slice(0, 100) + "..."}</Over>
+            </Con>
+          </Wrap>
+        </>
       )}
     </div>
   );

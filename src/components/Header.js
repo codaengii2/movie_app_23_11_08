@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { routes } from "../routes";
+import { useEffect, useRef } from "react";
 
 const SHeader = styled.div`
   width: 100%;
@@ -8,10 +9,10 @@ const SHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 3;
   a {
     color: white;
   }
@@ -32,8 +33,39 @@ const Menu = styled.div`
 `;
 
 export const Header = () => {
+
+  const headerRef = useRef();
+
+  //=> Ref = reference 참조
+  useEffect(()=>{
+
+    const scrollHandler = () => {
+      const pageY = window.scrollY;
+      // console.log(pageY);
+      // console.log(headerRef);
+      const {current} = headerRef;
+      
+
+      if(pageY > 300){
+        current.style.position = "fixed"
+        current.style.background = "rgba(0,0,0,0.7)"
+        current.style.backdropFilter = "blur(2px)"
+      }else{
+        current.style.position = "absolute"
+        current.style.background = "transparent"
+        current.style.backdropFilter = "blur(0px)"
+
+      }
+      
+
+
+    }
+
+    return window.addEventListener('scroll', scrollHandler);
+  },[])
+
   return (
-    <SHeader>
+    <SHeader /* className="header" */ ref={headerRef}>
       <Logo>
         <Link to={routes.home}>MOVIE</Link>
       </Logo>

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IMG_URL } from "../../constants";
 import { Loading } from "../../components/Loading";
 import { PageTitle } from "../../components/PageTitle";
+import { useScrollTop } from "../../lib/useScrollTop";
 
 const Wrap = styled.div`
   width: 100%;
@@ -80,6 +81,8 @@ export const Detail = () => {
   const { id } = useParams();
   const [dataDetail, setDataDetail] = useState();
   const [isloading, setIsLoading] = useState(true);
+  useScrollTop();
+
 
   useEffect(() => {
     (async () => {

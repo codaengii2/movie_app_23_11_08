@@ -20,13 +20,14 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
 `;
+
 const Input = styled.input`
   all: unset;
   width: 50%;
-  height: 30px;
+  height: 40px;
   background-color: white;
-  border: 5px solid dimgray;
-  border-radius: 10px;
+  /* border: 5px solid dimgray; */
+  border-radius: 10px 0 0 10px; 
   padding: 0 20px;
   color: #000;
 `;
@@ -35,11 +36,12 @@ const Button = styled.button`
   all: unset;
   width: 50px;
   height: 40px;
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
   font-size: 12px;
   text-align: center;
-  background-color: dimgray;
-  color: #fff;
+  /* background-color: dimgray; */
+  color: #000;
   font-size: 20px;
   cursor: pointer;
 `;
@@ -165,3 +167,4 @@ export const Search = () => {
 //=> term이 있으면?
 
 //=> submit 했을 때 검색결과가 불러와지면 loading이 멈추게
+

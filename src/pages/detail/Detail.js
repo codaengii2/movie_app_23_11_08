@@ -78,7 +78,7 @@ const Over = styled.div`
 `;
 
 export const Detail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); //useEffect array 관련된 것들은 관련지어 넣어줘야함
   const [dataDetail, setDataDetail] = useState();
   const [isloading, setIsLoading] = useState(true);
   useScrollTop();
@@ -92,7 +92,7 @@ export const Detail = () => {
         setIsLoading(false);
       } catch (error) {}
     })();
-  }, []);
+  }, [id]); //=> 여기
 
   // console.log(dataDetail);
   // console.log(isloading);

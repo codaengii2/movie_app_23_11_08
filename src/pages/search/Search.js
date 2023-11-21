@@ -2,13 +2,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
 import { search } from "../../api";
-import { useParams } from "react-router-dom";
 import { Layout } from "../../components/Layout";
 import { IMG_URL } from "../../constants";
 import { PageTitle } from "../../components/PageTitle";
-import { Loading } from "../../components/Loading";
+import { useState } from "react";
 const Title = styled.h3`
   font-size: 30px;
   text-align: center;
@@ -123,16 +121,11 @@ export const Search = () => {
     // console.log("검색결과: ", search);
   };
 
-  console.log(term);
+  // console.log(term);
+  // console.log(isloading);
 
   return (
     <>
-      {/* <Form onSubmit={searchData}>
-  <Input type="search" placeholder="영화를 검색해보세요"></Input>
-  <Button>
-    <FontAwesomeIcon icon={faMagnifyingGlass} />
-  </Button>
-</Form> */}
       <PageTitle titleName={"Search"} />
       <Layout>
         <Title>찾으시는 영화가 있으신가요?</Title>
@@ -145,20 +138,28 @@ export const Search = () => {
             type="text"
             placeholder="검색 내용"
           />
-          <Button>
+          <Button $isActive={isValid}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </Button>
         </Form>
+          <p>{errors?.search?.message}</p>
+        <>
+     
         {term && (
           <ConWrap>
+            {isloading ? "loading...":
+            <>
             {term.map((payload) => (
               <Con key={payload.id}>
                 <Bg $bgUrl={payload.poster_path} />
                 <MovieTitle>{payload.title}</MovieTitle>
               </Con>
             ))}
+            </>}
           </ConWrap>
         )}
+ 
+        </>
       </Layout>
     </>
   );

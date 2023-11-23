@@ -7,6 +7,7 @@ import { Layout } from "../../components/Layout";
 import { IMG_URL } from "../../constants";
 import { PageTitle } from "../../components/PageTitle";
 import { useState } from "react";
+import {Loading} from "../../components/Loading"
 const Title = styled.h3`
   font-size: 30px;
   text-align: center;
@@ -97,7 +98,7 @@ export const Search = () => {
   // });
   // const { searchQuery } = useParams();
   const [term, setTerm] = useState();
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(false);
 
   // useEffect(() => {
   //   (async () => {
@@ -110,6 +111,7 @@ export const Search = () => {
   // => 마운트될 때 사용하는 것이 아니라 useEffect 가 필요하지않음
 
   const searchHandler = async (data) => {
+    setIsLoading(true);
     const { search: searchQuery } = data;
     try {
       const { results } = await search(searchQuery);
@@ -122,7 +124,7 @@ export const Search = () => {
   };
 
   // console.log(term);
-  // console.log(isloading);
+  console.log(isloading);
 
   return (
     <>
@@ -147,7 +149,7 @@ export const Search = () => {
      
         {term && (
           <ConWrap>
-            {isloading ? "loading...":
+            {isloading ? <Loading />:
             <>
             {term.map((payload) => (
               <Con key={payload.id}>
@@ -167,5 +169,6 @@ export const Search = () => {
 
 //=> term이 있으면?
 
-//=> submit 했을 때 검색결과가 불러와지면 loading이 멈추게
+//=> submit 했을 때 검색결과가 불러와지면 loading이 멈추게 ✅
+
 

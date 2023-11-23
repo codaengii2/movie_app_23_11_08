@@ -108,7 +108,7 @@ export const Detail = () => {
             <ImgBox $poster={dataDetail?.poster_path}></ImgBox>
             <Con>
               <Title>{dataDetail?.title}</Title>
-              <p>평점 :{Math.round(dataDetail?.vote_average)}</p>
+              <p>평점 : {Math.round(dataDetail?.vote_average)}</p>
               <ul>
                 {/* <li>{dataDetail?.genres[0]?.name}</li>
               <li>{dataDetail?.genres[1]?.name}</li>

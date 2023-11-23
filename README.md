@@ -29,8 +29,8 @@
 - [x] Search component 구성
 - [] search components no-image 설정
 - [x] Header 스크롤 이벤트 설정
-- [] scrollTo 이벤트 설정
-- [] 전체페이지 Helmet 구성
+- [x] scrollTo 이벤트 설정
+- [x] 전체페이지 Helmet 구성
 - [] 404 Page Ui 구성
 - [x] Helmet 사용시 경고 처리
 

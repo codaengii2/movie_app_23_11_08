@@ -7,7 +7,8 @@ import { Layout } from "../../components/Layout";
 import { IMG_URL } from "../../constants";
 import { PageTitle } from "../../components/PageTitle";
 import { useState } from "react";
-import {Loading} from "../../components/Loading"
+import { Loading } from "../../components/Loading";
+import { Link } from "react-router-dom";
 const Title = styled.h3`
   font-size: 30px;
   text-align: center;
@@ -26,7 +27,7 @@ const Input = styled.input`
   height: 40px;
   background-color: white;
   /* border: 5px solid dimgray; */
-  border-radius: 10px 0 0 10px; 
+  border-radius: 10px 0 0 10px;
   padding: 0 20px;
   color: #000;
 `;
@@ -96,7 +97,6 @@ export const Search = () => {
   // useForm({
   //   defaultValues: async () => fetch(searchQuery),
   // });
-  // const { searchQuery } = useParams();
   const [term, setTerm] = useState();
   const [isloading, setIsLoading] = useState(false);
 
@@ -116,6 +116,7 @@ export const Search = () => {
     try {
       const { results } = await search(searchQuery);
       setTerm(results);
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -124,7 +125,7 @@ export const Search = () => {
   };
 
   // console.log(term);
-  console.log(isloading);
+  // console.log(isloading);
 
   return (
     <>
@@ -144,23 +145,26 @@ export const Search = () => {
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </Button>
         </Form>
-          <p>{errors?.search?.message}</p>
+        <p>{errors?.search?.message}</p>
         <>
-     
-        {term && (
-          <ConWrap>
-            {isloading ? <Loading />:
-            <>
-            {term.map((payload) => (
-              <Con key={payload.id}>
-                <Bg $bgUrl={payload.poster_path} />
-                <MovieTitle>{payload.title}</MovieTitle>
-              </Con>
-            ))}
-            </>}
-          </ConWrap>
-        )}
- 
+          {term && (
+            <ConWrap>
+              {isloading ? (
+                <Loading />
+              ) : (
+                <>
+                  {term.map((payload) => (
+                    <Con key={payload.id}>
+                      <Link to={`/detail/${payload.id}`}>
+                        <Bg $bgUrl={payload.poster_path} />
+                        <MovieTitle>{payload.title}</MovieTitle>
+                      </Link>
+                    </Con>
+                  ))}
+                </>
+              )}
+            </ConWrap>
+          )}
         </>
       </Layout>
     </>
@@ -170,5 +174,3 @@ export const Search = () => {
 //=> term이 있으면?
 
 //=> submit 했을 때 검색결과가 불러와지면 loading이 멈추게 ✅
-
-

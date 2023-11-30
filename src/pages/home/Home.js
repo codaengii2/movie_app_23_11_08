@@ -1,20 +1,11 @@
-import {
-  Upcoming,
-  nowPlaying,
-  popular,
-  search,
-  topRated,
-  upcoming,
-} from "../../api";
+import { nowPlaying, popular, topRated, upcoming } from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanners } from "./MainBanners";
-import styled from "styled-components";
 import "swiper/css";
 import { ShowMovie } from "./ShowMovie";
 import { Layout } from "../../components/Layout";
 import { PageTitle } from "../../components/PageTitle";
 import { Loading } from "../../components/Loading";
-import { Search } from "../search/Search";
 
 export const Home = () => {
   // 1. 마운트시 api에 요청

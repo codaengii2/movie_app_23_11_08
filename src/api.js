@@ -4,10 +4,10 @@ const baseUrl = "https://api.themoviedb.org/3/";
 // const setUrl = (type) => {
 //   return baseUrl + `movie/${type}` + "?language=ko-KR";
 // };
-const nowPlayingUrl = baseUrl + "movie/now_playing" + "?language=ko-KR";
-const popularUrl = baseUrl + "movie/popular" + "?language=ko-KR";
-const topRatedUrl = baseUrl + "movie/top_rated" + "?language=ko-KR";
-const upcomingUrl = baseUrl + "movie/upcoming" + "?language=ko-KR";
+const nowPlayingUrl = baseUrl + "movie/now_playing?language=ko-KR";
+const popularUrl = baseUrl + "movie/popular?language=ko-KR";
+const topRatedUrl = baseUrl + "movie/top_rated?language=ko-KR";
+const upcomingUrl = baseUrl + "movie/upcoming?language=ko-KR";
 
 const options = {
   method: "GET",
@@ -39,14 +39,14 @@ export const upcoming = () => {
 };
 
 export const movieDetail = (id) => {
-  const detailUrl = baseUrl + `movie/${id}` + "?language=ko-KR";
+  const detailUrl = baseUrl + `movie/${id}?language=ko-KR`;
   return fetch(detailUrl, options).then((res) => res.json());
 };
 //{}가 있으면 return 생략 못함
 
 export const search = (searchQuery) => {
   const searchUrl =
-    baseUrl + "search/movie" + `?&query=${searchQuery}` + "?&language=ko-KR";
+    baseUrl + `search/movie?&query=${searchQuery}?&language=ko-KR`;
 
   return fetch(searchUrl, options).then((res) => res.json());
 };

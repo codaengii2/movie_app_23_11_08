@@ -31,7 +31,7 @@
 - [x] Header 스크롤 이벤트 설정
 - [x] scrollTo 이벤트 설정
 - [x] 전체페이지 Helmet 구성
-- [] 404 Page Ui 구성
+- [] 404 Page Ui 구성 => 해야됨
 - [x] Helmet 사용시 경고 처리
 
 ## movie app 만들면서 경험한 점
